@@ -1,0 +1,21 @@
+version: "3"
+services:
+  bookstore-jdbc:
+    image: bookstore-jdbc
+    ports:
+      - "8080:8080"
+    networks:
+      - bookStore-mysql
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:5
+    networks:
+      - bookStore-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bootdb  
+
+networks:
+  bookStore-mysql:
